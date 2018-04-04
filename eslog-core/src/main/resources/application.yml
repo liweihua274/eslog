@@ -1,0 +1,39 @@
+
+
+mybatis:
+  mapper-locations: classpath*:mybatis/*.xml
+  type-aliases-package: com.hd123.framework.es.core.storage.entity
+
+eslog:
+  datasource:
+    name: eslog
+#    url: jdbc:mysql://${DATABASE_IP:rm-uf6c193varg241f18.mysql.rds.aliyuncs.com}:${DATABASE_IP_PORT:3306}/${DATABASE_NAME:yinli_open_api}?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://${DATABASE_IP:172.17.10.169}:${DATABASE_IP_PORT:3306}/${DATABASE_NAME:eslog}?useUnicode=true&characterEncoding=utf-8
+    username: ${DATABASE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:root}
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: ${DATABASE_FILTERS:stat,log4j}
+    initialSize: ${DATABASE_INITIALSIZE:10}
+    minIdle: ${DATABASE_MINIDLE:10}
+    maxActive: ${DATABASE_MAXACTIVE:1000}
+    maxWait: ${DATABASE_MAXWAIT:60000}
+    timeBetweenEvictionRunsMillis: ${DATABASE_TIMEBETWEENEVICTIONRUNSMILLIS:60000}
+    minEvictableIdleTimeMillis: ${DATABASE_MINEVICTABLEIDLETIMEMILLIS:300000}
+    logSlowSql: ${DATABASE_LOGSLOWSQL:true}
+    poolPreparedStatements: ${DATABASE_POOLPREPAREDSTATEMENTS:true}
+    druid:
+      username: ${DATABASE_DRUID_USERNAME:admin}
+      password: ${DATABASE_DRUID_PASSWORD:hd123}
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  cache:
+    type: guava
+  filter:
+    enable: false
+
+logging:                                # 配置日志级别，让hibernate打印出执行的SQL
+  config: classpath:logback.xml
+  level:
+    root: INFO
